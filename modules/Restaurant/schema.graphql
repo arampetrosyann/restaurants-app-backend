@@ -1,0 +1,49 @@
+# Queries
+                         
+type Query {
+    restaurants(params: RestaurantsParamsInput): RestaurantsResult
+    restaurant(id: ID!): Restaurant
+}
+
+# Inputs
+
+input RestaurantsParamsInput {
+	pageSize: Int
+	page: Int
+	sort: String
+	dir: Dir
+}
+
+# Types
+
+type RestaurantLocation {
+    country: String
+    city: String
+    address: String
+    latitude: String
+    longitude: String
+    zipcode: String
+}
+
+type RestaurantTimings {
+    from: String
+    to: String
+    isContinual: Boolean
+}
+
+type Restaurant {
+    id: ID
+    name: String
+    url: String
+    phoneNumbers: [String]
+    description: String
+    location: RestaurantLocation
+    averageRating: Float
+    timings: RestaurantTimings
+}
+
+type RestaurantsResult {
+	items: [Restaurant]
+	total: Int
+	totalPages: Int
+}

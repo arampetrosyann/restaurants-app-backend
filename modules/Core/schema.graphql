@@ -1,0 +1,14 @@
+type Query
+type Mutation
+
+enum Dir {
+  ASC
+  DESC
+}
+
+# Schema
+
+schema {
+    query: Query
+    mutation: Mutation
+}

@@ -1,0 +1,44 @@
+# Queries
+
+type Query {
+    restaurantReviews(restaurantId: ID!, params: ReviewsParamsInput): ReviewsResult
+}
+
+# Mutations 
+
+type Mutation {
+    addRestaurantReview(restaurantId: ID!, data: ReviewDataInput): Boolean
+}
+
+# Inputs
+
+input ReviewsParamsInput {
+	pageSize: Int
+	page: Int
+	sort: String
+	dir: Dir
+}
+
+input ReviewDataInput {
+	name: String!
+    email: String!
+	review: String!
+	rating: Float!
+}
+
+# Types
+
+type RestaurantReview {
+	id: String
+	name: String
+    email: String
+	review: String
+	rating: Float
+	date: String
+}
+
+type ReviewsResult {
+	items: [RestaurantReview]
+	total: Int
+	totalPages: Int
+}
