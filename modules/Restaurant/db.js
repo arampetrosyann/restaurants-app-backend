@@ -1,5 +1,6 @@
 const Restaurant = require("./model/restaurant");
 const composeParams = require("../../helpers/composeParams");
+const isObjectEmpty = require("../../helpers/isObjectEmpty");
 
 const processDbData = (data = {}) => {
     let processed = {
@@ -50,7 +51,22 @@ const getRestaurantById = async (restaurantId = "") => {
     return processDbData(restaurant);
 };
 
+const updateRestaurantDataRaw = async (restaurantId = "", data = {}) => {
+    if (isObjectEmpty(data)) {
+        return false;
+    }
+
+    await Restaurant.findByIdAndUpdate(
+        restaurantId,
+        { $set: data },
+        { new: true }
+    );
+
+    return true;
+};
+
 module.exports = {
     getRestaurantList,
     getRestaurantById,
+    updateRestaurantDataRaw
 };

@@ -49,9 +49,11 @@ const addReview = async (id = "", data = {}) => {
     await review.validate();
     await review.save();
 
-    const newReview = await Review.findById(review._id).lean();
+    const reviews = await Review.aggregate([
+        { $match: { restaurantId: ObjectId(id) } },
+    ]);
 
-    return processDbData(newReview);
+    return reviews.map((data) => processDbData(data));
 };
 
 module.exports = {

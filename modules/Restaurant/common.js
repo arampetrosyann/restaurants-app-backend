@@ -1,6 +1,7 @@
 const {
     getRestaurantList: getRestaurantListDb,
     getRestaurantById: getRestaurantByIdDb,
+    updateRestaurantDataRaw: updateRestaurantDataRawDb,
 } = require("./db");
 
 const getRestaurantList = async (params = {}) => {
@@ -15,7 +16,12 @@ const getRestaurantById = async (restaurantId = "") => {
     return result;
 };
 
+const updateRestaurantDataRaw = async (restaurantId = "", data = {}) => {
+    return await updateRestaurantDataRawDb(restaurantId, data);
+};
+
 module.exports = {
     getRestaurantList,
     getRestaurantById,
+    updateRestaurantDataRaw
 };

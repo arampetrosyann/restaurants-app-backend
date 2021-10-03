@@ -23,7 +23,7 @@ input ReviewDataInput {
 	name: String!
     email: String!
 	review: String!
-	rating: Float!
+	rating: Int!
 }
 
 # Types
